@@ -4,7 +4,7 @@ import scala.io.Source
 
 object Day2ChecksumCalculator {
 
-  def getListFromFile(): List[String] = {
+  private def getListFromFile(): List[String] = {
     Source.fromFile(this.getClass.getResource("/input/day2.txt").getFile)
       .getLines()
       .toList
