@@ -4,12 +4,6 @@ import scala.io.Source
 
 object Day2ChecksumCalculator {
 
-  private def getListFromFile(): List[String] = {
-    Source.fromFile(this.getClass.getResource("/input/day2.txt").getFile)
-      .getLines()
-      .toList
-  }
-
   def calculateCheckSum(): Int = {
     val tuple = getListFromFile()
       .map(entry => calculateDoublesAndTripplesFor(entry.toList))
@@ -25,12 +19,18 @@ object Day2ChecksumCalculator {
     }
   }
 
-  def calculateOccurencesOf(x: Char, xs: List[Char], currentResult: (Int,Int)): (Int, Int) = {
+  private def calculateOccurencesOf(x: Char, xs: List[Char], currentResult: (Int,Int)): (Int, Int) = {
     val count = xs.count(elem => elem == x)
     count match {
       case 1 => (1, currentResult._2)
       case 2 => (currentResult._1, 1)
       case _ => currentResult
     }
+  }
+
+  private def getListFromFile(): List[String] = {
+    Source.fromFile(this.getClass.getResource("/input/day2.txt").getFile)
+      .getLines()
+      .toList
   }
 }
